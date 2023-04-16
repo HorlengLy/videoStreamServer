@@ -7,7 +7,7 @@ app.use(cors());
 const server = http.createServer(app);
 const io = new Server(server,{
     cors:{
-        origin:["https://videocaller.netlify.app/","http://localhost:5173"],
+        origin:"https://videocaller.netlify.app/",
         methods:["GET","POST"]
         },
 });
