@@ -36,10 +36,6 @@ io.on('connection',socket=>{
             removeMemmber(room,socket);
             socket.to(room).emit("user-left",peerId)
         })
-        socket.on('changeScreen',({room,peerId})=>{
-            console.log({room,peerId});
-            socket.broadcast.to(room).emit('screenChenged',peerId)
-        })
         
     })
     
@@ -63,7 +59,7 @@ function addMember(username,room,peerId,socket){
     location.members.push({username,peerId,socketId:socket.id})
     socket.join(room)
     socket.emit("response",{ms:"",room,success:true});
-    let rooms = Rooms.find(r=>r.room = room)
+    let rooms = Rooms.find(r=>r.room == room)
     socket.nsp.in(room).emit('getRoom',rooms)
 }
 
